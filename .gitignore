@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/powershell
 # Edit at https://www.toptal.com/developers/gitignore?templates=powershell
 
+# Visal Studio Code
+.vscode
+
 ### PowerShell ###
 # Exclude packaged modules
 *.zip
