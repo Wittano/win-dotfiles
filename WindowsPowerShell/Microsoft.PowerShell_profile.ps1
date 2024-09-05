@@ -1,0 +1,1 @@
+oh-my-posh init pwsh --config ~/wittano.omp.json | Invoke-Expression
