@@ -1,18 +1,21 @@
-$dotfiles=$(Get-Item -Path $MyInvocation.MyCommand.Source).Directory.FullName
+. ./sources.ps1
 
 function Get-Config-File {
     param (
         [string]$path
     )
-    
+
     if (-not $(Test-Path -Path $path)) {
         throw "Missing $path"
         exit 1
     }
-    
+
     $basename = $(Get-Item $path).Name
-    xcopy.exe $path "$dotfiles\$basename"
+    Copy-Item -Recurse -Force -Path $path -Destination $dotfiles
 }
 
-Get-Config-File "$env:USERPROFILE\wittano.omp.json"
-Get-Config-File "$env:USERPROFILE\Documents\WindowsPowerShell"
+foreach ($path in $sources) {
+    Write-Output "Copy $path to dotfiles"
+
+    Get-Config-File $path
+}
